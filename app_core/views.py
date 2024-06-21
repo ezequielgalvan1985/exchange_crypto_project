@@ -2,10 +2,13 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.contrib.auth.models import Group, User
-from rest_framework import permissions, viewsets
+from rest_framework import permissions, viewsets, status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .models import Wallet
-from .serializers import GroupSerializer, UserSerializer, WalletSerializer
+from .models import Wallet, WalletContract
+from .serializers import GroupSerializer, UserSerializer, WalletSerializer, WalletContractSerializer, \
+    WalletCreateDtoSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -29,3 +32,8 @@ class WalletViewSet(viewsets.ModelViewSet):
     queryset = Wallet.objects.all().order_by('coin')
     serializer_class = WalletSerializer
     #permission_classes = [permissions.IsAuthenticated]
+
+
+class WalletContractViewSet(viewsets.ModelViewSet):
+    queryset = WalletContract.objects.all().order_by('address')
+    serializer_class = WalletContractSerializer

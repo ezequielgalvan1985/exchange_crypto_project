@@ -6,7 +6,7 @@ import httpx
 
 def post_create_wallet(json_body):
     try:
-        host = "http://localhost:8000/app-core/v1/wallets/?format=json"
+        host = "http://localhost:8000/app-core/v1/wallet-contract/?format=json"
         response = httpx.post(host,
                               data=json_body,
                               headers={"Content-Type": "application/json"},

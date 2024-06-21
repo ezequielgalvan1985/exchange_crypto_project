@@ -17,15 +17,24 @@ class UserProfile(models.Model):
         return self.nombre
 
 
-
-class Wallet(models.Model):
-    balance     = models.IntegerField(blank=True, default=0)
+class WalletContract(models.Model):
     address      = models.CharField(max_length=50, blank=False)
-    coin      = models.CharField(max_length=5, blank=False)
-    chain_id = models.IntegerField()
-    transactions = models.CharField(max_length=50)
+    chain_id     = models.IntegerField()
+    reserved    = models.BooleanField()
     def __str__(self):
         return self.address
+
+class Wallet(models.Model):
+    balance         = models.IntegerField(blank=True, default=0)
+    address         = models.CharField(max_length=50, blank=False)
+    coin            = models.CharField(max_length=5, blank=False)
+    chain_id        = models.IntegerField()
+    #wallet_contract = models.ForeignKey(WalletContract,on_delete=models.CASCADE)
+    transactions = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.address
+
 
 
 class Transaction(models.Model):
