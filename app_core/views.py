@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets
 
 from .models import Wallet
-from .serializers import GroupSerializer, UserSerializer
+from .serializers import GroupSerializer, UserSerializer, WalletSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -27,5 +27,5 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class WalletViewSet(viewsets.ModelViewSet):
     queryset = Wallet.objects.all().order_by('coin')
-    serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = WalletSerializer
+    #permission_classes = [permissions.IsAuthenticated]
